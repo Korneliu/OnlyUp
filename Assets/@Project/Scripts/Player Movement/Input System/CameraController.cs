@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public JoystickController joystickCameraController;
-    public Transform target; // Персонаж, вокруг которого будет крутиться камера
+    public Transform target;
     public float cameraRotationSpeed = 2f;
     public Vector3 cameraOffset = new Vector3(0, 2, -5);
 
@@ -22,15 +22,12 @@ public class CameraController : MonoBehaviour
         float joystickInputX = joystickCameraController.GetDirection().x;
         float joystickInputY = joystickCameraController.GetDirection().y;
 
-        // Вычисляем углы поворота
         rotationAngles.y += joystickInputX * cameraRotationSpeed;
         rotationAngles.x -= joystickInputY * cameraRotationSpeed;
-        rotationAngles.x = Mathf.Clamp(rotationAngles.x, -90, 90); // Ограничиваем вертикальный угол
+        rotationAngles.x = Mathf.Clamp(rotationAngles.x, -90, 90);
 
-        // Преобразуем углы в кватернион
         Quaternion rotation = Quaternion.Euler(rotationAngles);
 
-        // Вычисляем позицию камеры с учетом вращения
         Vector3 targetPosition = target.position + rotation * initialOffset;
 
         transform.position = targetPosition;
