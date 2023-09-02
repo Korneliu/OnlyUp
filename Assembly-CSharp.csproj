@@ -59,6 +59,7 @@
     <Compile Include="Assets\@Project\Scripts\Player Movement\Input System\CameraController.cs" />
     <Compile Include="Assets\@Project\Scripts\Player Movement\Input System\JoystickController.cs" />
     <Compile Include="Assets\@Project\Scripts\Player Movement\Input System\PlayerMovement.cs" />
+    <Compile Include="Assets\@Project\Scripts\Scene\LoadScene.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

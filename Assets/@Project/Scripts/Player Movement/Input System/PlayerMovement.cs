@@ -4,21 +4,27 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public JoystickController joystickController;
-    public Transform cameraTransform;
+    [Header("Movement Controller")]
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private JoystickController joystickController;
 
+    [Header("Character Controller")]
+    [SerializeField] private CharacterController controller;
+    [SerializeField] private Transform cameraTransform;
+    [SerializeField] private Animator playerAnimator;
     private CharacterController characterController;
 
-    public float jumpForce = 5.0f;
-    public float gravity = -9.81f;
-    public Transform jumpPoint;
-    public CharacterController controller;
-    public Animator playerAnimator;
-    public Button jumpButton;
-
+    [Header("Jump")]
+    [SerializeField] private Button jumpButton;
+    [SerializeField] private float jumpForce = 5.0f;
+    [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private Transform jumpPoint;
     private Vector3 velocity;
     private bool isJumping = false;
+
+    [Header("Save Position")]
+    private Transform characterTransform;
+    private Vector3 startPosition;
 
     private void Start()
     {
@@ -26,12 +32,22 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator = GetComponentInChildren<Animator>();
 
         jumpButton.onClick.AddListener(Jump);
+
+        characterTransform = transform;
+        startPosition = characterTransform.position;
+
+        LoadPlayerPosition();
     }
 
     private void Update()
     {
         Joystick();
         JumpUpdate();
+    }
+
+    private void OnDisable()
+    {
+        SavePlayerPosition();
     }
 
     private void Joystick()
@@ -66,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         if (controller.isGrounded && !isJumping)
         {
             isJumping = true;
-            playerAnimator.SetTrigger("Jump"); // Предполагается, что аниматор имеет параметр "Jump"
+            playerAnimator.SetTrigger("Jump");
             velocity.y += Mathf.Sqrt(jumpForce * -2.0f * gravity);
             StartCoroutine(ResetJump());
         }
@@ -74,8 +90,25 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator ResetJump()
     {
-        yield return new WaitForSeconds(0f); // Подождать 1 секунду, чтобы предотвратить множественные прыжки
+        yield return new WaitForSeconds(0.1f);
         isJumping = false;
+    }
+
+    private void SavePlayerPosition()
+    {
+        PlayerPrefs.SetFloat("PlayerPosX", characterTransform.position.x);
+        PlayerPrefs.SetFloat("PlayerPosY", characterTransform.position.y);
+        PlayerPrefs.SetFloat("PlayerPosZ", characterTransform.position.z);
+        PlayerPrefs.Save();
+    }
+
+    private void LoadPlayerPosition()
+    {
+        float playerPosX = PlayerPrefs.GetFloat("PlayerPosX", startPosition.x);
+        float playerPosY = PlayerPrefs.GetFloat("PlayerPosY", startPosition.y);
+        float playerPosZ = PlayerPrefs.GetFloat("PlayerPosZ", startPosition.z);
+
+        characterTransform.position = new Vector3(playerPosX, playerPosY, playerPosZ);
     }
 }
 

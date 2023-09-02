@@ -353,6 +353,7 @@
 "Assets/@Project/Scripts/Player Movement/Input System/CameraController.cs"
 "Assets/@Project/Scripts/Player Movement/Input System/JoystickController.cs"
 "Assets/@Project/Scripts/Player Movement/Input System/PlayerMovement.cs"
+"Assets/@Project/Scripts/Scene/LoadScene.cs"
 -langversion:9.0
 
 /deterministic

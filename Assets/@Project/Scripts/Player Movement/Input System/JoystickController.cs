@@ -5,11 +5,11 @@ using UnityEngine.EventSystems;
 
 public class JoystickController : MonoBehaviour, IDragHandler, IEndDragHandler
 {
-    public RectTransform joystickBackground;
+    [SerializeField] private RectTransform joystickBackground;
+    [SerializeField] private float joystickRadius;
     private Vector2 defaultPosition;
     private Vector2 direction = Vector2.zero;
 
-    public float joystickRadius;
 
     private void Start()
     {

@@ -4,33 +4,31 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public JoystickController joystickCameraController;
-    public Transform target;
-    public float cameraRotationSpeed = 2f;
-    public Vector3 cameraOffset = new Vector3(0, 2, -5);
+    [SerializeField] private Transform target;
+    [SerializeField] private float rotationSpeed = 2.0f;
+    [SerializeField] private Rect swipeZone = new Rect(0.5f, 0f, 0.5f, 1f);
 
-    private Vector3 initialOffset;
-    private Vector3 rotationAngles = Vector3.zero;
+    private Vector2 rotation = Vector2.zero;
 
-    private void Start()
+    void Update()
     {
-        initialOffset = transform.position - target.position;
-    }
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
 
-    private void Update()
-    {
-        float joystickInputX = joystickCameraController.GetDirection().x;
-        float joystickInputY = joystickCameraController.GetDirection().y;
+            if (swipeZone.Contains(touch.position / new Vector2(Screen.width, Screen.height)))
+            {
+                if (touch.phase == TouchPhase.Moved)
+                {
+                    rotation.x += touch.deltaPosition.x * rotationSpeed;
+                    rotation.y -= touch.deltaPosition.y * rotationSpeed;
+                    rotation.y = Mathf.Clamp(rotation.y, -80f, 80f);
+                }
+            }
+        }
 
-        rotationAngles.y += joystickInputX * cameraRotationSpeed;
-        rotationAngles.x -= joystickInputY * cameraRotationSpeed;
-        rotationAngles.x = Mathf.Clamp(rotationAngles.x, -90, 90);
+        transform.rotation = Quaternion.Euler(rotation.y, rotation.x, 0);
 
-        Quaternion rotation = Quaternion.Euler(rotationAngles);
-
-        Vector3 targetPosition = target.position + rotation * initialOffset;
-
-        transform.position = targetPosition;
-        transform.LookAt(target);
+        transform.position = target.position - transform.forward * 5f;
     }
 }
