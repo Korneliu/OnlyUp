@@ -3,7 +3,67 @@ guid: 9494ad03db6507145a77e1e02e3859e6
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Atlas_1
+    second: {fileID: 2100000, guid: a4319ffa42b8e6a489f50e71a7693ada, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass_01
+    second: {fileID: 2100000, guid: 322e223666a634641bb0cd2698818543, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grade1
+    second: {fileID: 2100000, guid: d5e438979d7370144897594782971237, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grade2
+    second: {fileID: 2100000, guid: e3e1efe90aa5dc144ad0de94f29309cc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grass_01
+    second: {fileID: 2100000, guid: 322e223666a634641bb0cd2698818543, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: 2a407300e5e0cd74fa490de70a01f2b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roads
+    second: {fileID: 2100000, guid: e460b197c894f0d45a1816a9810f1888, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tires
+    second: {fileID: 2100000, guid: 704f359716c37e849a102be07ea0ce0b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Traffic_Car_Atlas
+    second: {fileID: 2100000, guid: f77d1d78c9385c847a77f6e29d1650c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Trees_01
+    second: {fileID: 2100000, guid: aab63f550db4891468a5fbc3bf9b2d35, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Water.001
+    second: {fileID: 2100000, guid: 6f54a23456217f141a6a8399f843f3cc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wins
+    second: {fileID: 2100000, guid: e058e7df132585e4a8820f4cb747b02d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
